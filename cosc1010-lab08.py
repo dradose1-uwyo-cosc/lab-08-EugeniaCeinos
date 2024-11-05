@@ -73,11 +73,16 @@ def slope_intercept(m, b, lower_bound_x, upper_bound_x):
 
 while True:
     m = input("Determine the slope: ")
+    if m.lower() == "exit":
+        break
     b = input("Determine the intercept: ")
+    if b.lower() == "exit":
+        break
     lower_bound = input("Determine the lower bound: ")
+    if lower_bound.lower() == "exit":
+        break
     upper_bound = input("Determine the upper bound: ")
-
-    if m.lower() == "exit" or b.lower() == "exit" or lower_bound.lower() == "exit" or upper_bound.lower() == "exit":
+    if upper_bound.lower() == "exit":
         break
 
     m = adv_convert(m)
@@ -98,3 +103,43 @@ print("*" * 75)
 # Create a loop like above to prompt the user for input for the three values
 # Create a second function that just does the square root operation 
     # If the number you are trying to take the square root of is negative, return null
+
+def square_root(num):
+    """Does the square root of a number"""
+    if num < 0:
+        return False
+    num = num ** (1/2)
+    return num
+
+def quadratic_formula(a, b, c):
+    """Does quadratic formula"""
+    inside = b**(2) -4 * a * c
+    if square_root(inside):
+        squared = square_root(inside)
+    else:
+        return False
+    positive_way = (-b + squared) / (2*a)
+    negative_way = (-b - squared) / (2*a)
+    result = [positive_way, negative_way]
+    return result
+
+while True:
+    a = input("Determine a: ")
+    if a.lower() == "exit":
+        break
+    b = input("Determine b: ")
+    if b.lower() == "exit":
+        break
+    c = input("Determine c: ")
+    if c.lower() == "exit":
+        break
+
+    a = adv_convert(a)
+    b = adv_convert(b)
+    c = adv_convert(c)
+
+    result = quadratic_formula(a, b, c) 
+    if quadratic_formula(a,b,c):  
+        print("The result is:", result)
+    else:
+        print("The square root is negative")
