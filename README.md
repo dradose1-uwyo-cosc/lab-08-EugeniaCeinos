@@ -1,12 +1,7 @@
-# [Name]
-## [Assignment #]
+# [Eugenia Ceinos]
+## [Assignment 8#]
 ## [Submission date: MM/DD/YY]
 ## Worked with/sources 
-* example
-* example
-* example
-* example
+* none
 ## Project Quirks/ Things that don't work
-* example
-* example
-* example
+* none
