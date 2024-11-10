@@ -1,6 +1,6 @@
 # Eugenia Ceinos
 # UWYO COSC 1010
-# Submission Date:
+# Submission Date: 11/10/2024
 # Lab 08
 # Lab Section: 16
 # Sources, people worked with, help given to: none
@@ -64,13 +64,17 @@ print("*" * 75)
 
 def slope_intercept(m, b, lower_bound_x, upper_bound_x):
     y = []
-    if type(lower_bound_x) is int and type(upper_bound_x) is int and lower_bound_x <= upper_bound_x:
-        for x in range(lower_bound_x, upper_bound_x + 1):
-            y.append((m*x)+b)
+    if type(lower_bound_x) is int and type(upper_bound_x) is int and type(m) is int and type(b) is int:
+        if lower_bound_x <= upper_bound_x:
+            for x in range(lower_bound_x, upper_bound_x + 1):
+                y.append((m*x)+b)
+        else:
+            return 2 # Lower bound must be minor than upper bound
     else:
-        return False
+        return 1 # Only integer values
     return y
 
+print("You can always end the program by typing 'exit'")
 while True:
     m = input("Determine the slope: ")
     if m.lower() == "exit":
@@ -90,9 +94,13 @@ while True:
     lower_bound = adv_convert(lower_bound)
     upper_bound = adv_convert(upper_bound)
     y = slope_intercept(m, b, lower_bound, upper_bound)
+    if y == 1:
+        print("Only integer values")
+    elif y == 2:
+        print("Lower bound must be minor than upper bound")
+    else:
+        print("The resulting list or value is:", y)
     
-    print("The resulting list or value is:", y)
-
 print("*" * 75)
 
 
@@ -104,25 +112,30 @@ print("*" * 75)
 # Create a second function that just does the square root operation 
     # If the number you are trying to take the square root of is negative, return null
 
-def square_root(num):
+def square_root(a,b,c):
     """Does the square root of a number"""
+    if type(a) is int and type(b) is int and type(c) is int:
+        num = b**(2) -4 * a * c
+    else:
+        return 1 #Only integer values
     if num < 0:
-        return False
+        return 2 #Can't do square root of a negative number
+    if a == 0:
+        return 3 #a can't equal 0 because it's a quadratic function
     num = num ** (1/2)
     return num
 
 def quadratic_formula(a, b, c):
     """Does quadratic formula"""
-    inside = b**(2) -4 * a * c
-    if square_root(inside):
-        squared = square_root(inside)
-    else:
-        return False
+    squared = square_root(a,b,c)
+    if squared == 1 or squared == 2 or squared == 3:
+        return squared
     positive_way = (-b + squared) / (2*a)
     negative_way = (-b - squared) / (2*a)
-    result = [positive_way, negative_way]
-    return result
+    return positive_way, negative_way
 
+
+print("You can always put 'exit' to finish")
 while True:
     a = input("Determine a: ")
     if a.lower() == "exit":
@@ -139,7 +152,12 @@ while True:
     c = adv_convert(c)
 
     result = quadratic_formula(a, b, c) 
-    if quadratic_formula(a,b,c):  
-        print("The result is:", result)
+    if result == 1:
+        print("Only integer values")
+    elif result == 2:
+        print("Can't do square root of negative numbers")
+    elif result == 3:
+        print("'a' can't equal 0 because it's a quadratic function")
     else:
-        print("The square root is negative")
+        positive, negative = result
+        print("The result is:", positive, "and", negative)
